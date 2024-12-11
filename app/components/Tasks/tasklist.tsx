@@ -2,18 +2,19 @@ import { Form } from "@remix-run/react";
 import { HiTrash } from "react-icons/hi2";
 
 export interface TaskListProps {
-  category: any
-  message: string
+  state: any
+  title: string
   id: string
+  description: string
 }
 
-export function Tasklist({ category, message, id }: TaskListProps) {
+export function Tasklist({ state, title, id }: TaskListProps) {
   return (
   <>
     <div className="flex justify-between items-center">
       <div>
-        <p className="text-md">{message}</p>
-        <span className="text-xs bg-green-100 border px-2 py-1 rounded text-green-700">{category}</span>
+        <p className="text-md">{title}</p>
+        <span className="text-xs bg-green-100 border px-2 py-1 rounded text-green-700">{state}</span>
       </div>
       <div>
         <Form method="post">
