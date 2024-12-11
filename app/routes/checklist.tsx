@@ -15,7 +15,12 @@ import { Form, useLoaderData } from "@remix-run/react";
 import { LoaderFunction } from "@remix-run/node";
 import { createTask, getAllTasks, deleteTask } from "../utils/tasks.server";
 import { Taskform } from "../components/Tasks/taskform";
-  import { Tasklist, TaskListProps } from "../components/Tasks/tasklist";
+import { Tasklist, TaskListProps } from "../components/Tasks/tasklist";
+import { main } from "../../prisma/seed"
+import { PrismaClient } from "@prisma/client";
+
+
+// const prisma = new PrismaClient();
 
 export const meta: MetaFunction = () => {
   return [
@@ -28,13 +33,24 @@ export const meta: MetaFunction = () => {
 //     breadcrumb: () => "Case study",
 //   };
 
-export const loader: LoaderFunction = async ({ request: Request }) => {
-  const user = {
-    id: "1",
-  };
+export const loader: LoaderFunction = async ({ request }) => {
+
+  const prisma = new PrismaClient();
+
+  try{
+  
+  const user = await main()
+
   const userTask = await getAllTasks(user.id);
 
   return {user, userTask};
+  
+  } catch (error) {
+    console.error("Error in loader:", error);
+
+    // Return an error response
+    throw new Response("Error loading data", { status: 500 });
+  }
 };
 
 export const action: ActionFunction = async ({ request }) => {
