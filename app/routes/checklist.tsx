@@ -83,12 +83,15 @@ export const action: ActionFunction = async ({ request }) => {
       const user = {
         id: "randomId",
       };
+      const CreatedBY = user
 
       const newTask = await createTask({
         state: State,
         title: Title,
         owner: Owner,
-        description: Description
+        createdBy: CreatedBY
+
+        // description: Description
       });
       return newTask;
     }
@@ -108,16 +111,15 @@ export default function Checklist() {
     <Stack maw={800} mr="auto" pt={20} pl={24} justify="center">
       <Title order={2}>Create your checklist !</Title>
 
-      <Text>Try 30000</Text>
       <div>
         {/* <label htmlFor="task"> Task </label> */}
-        <Form method="post">
+        {/* <Form method="post">
           <div>
             <label htmlFor="task"> Task </label>
             <input type="text" name="task" id="task" className="task" />
           </div>
           <button type="submit"> Add </button>
-        </Form>
+        </Form> */}
         {/* <input 
           type="text"
           name="task"
@@ -130,7 +132,9 @@ export default function Checklist() {
       <div className="grid gap-5">
           {userTask.task.length ? <> {userTask.task.map((task: TaskListProps) => {
             return(
-              <Tasklist key={task.id} id={task.id} title={task.title} state={task.state} description={task.description}/>
+              <Tasklist key={task.id} id={task.id} title={task.title} state={task.state} owner={task.owner} createdBy={task.createdBy}
+              // description={task.description}
+              />
             )
           })}
           </> : "😳 No task"}

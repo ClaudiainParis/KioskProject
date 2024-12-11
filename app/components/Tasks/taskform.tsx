@@ -6,13 +6,13 @@ export function Taskform() {
     <>
       <Form method="post">
         <div className="mb-5">
-          <label className="font-semibold mb-2 block" htmlFor="category">
+          <label className="font-semibold mb-2 block" htmlFor="state">
             Category
           </label>
 
           <select
-            name="category"
-            id="category"
+            name="state"
+            id="state"
             className="border-2 w-full rounded-md mr-8 border-gray-600 px-3 py-1 h-9"
             defaultValue={states[0].name}
           >
@@ -30,8 +30,18 @@ export function Taskform() {
             Task
           </label>
           <textarea
-            name="message"
-            id="message"
+            name="title"
+            id="title"
+            className="w-full border-2 rounded-md mr-8 border-gray-600 px-3 py-1"
+          />
+        </div>
+        <div className="mb-5">
+          <label className="font-semibold mb-2 block" htmlFor="task">
+            Done by?
+          </label>
+          <textarea
+            name="owner"
+            id="owner"
             className="w-full border-2 rounded-md mr-8 border-gray-600 px-3 py-1"
           />
         </div>

@@ -2,7 +2,8 @@ export interface TaskData {
     title: any;
     state: States | any;
     owner: any;
-    description: any
+    createdBy: any;
+    // description: any
 }
 
 export const states = [

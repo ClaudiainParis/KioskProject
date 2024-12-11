@@ -5,16 +5,18 @@ export interface TaskListProps {
   state: any
   title: string
   id: string
-  description: string
+  owner: string
+  createdBy: any
+  // description: string
 }
 
-export function Tasklist({ state, title, id }: TaskListProps) {
+export function Tasklist({ title, id }: TaskListProps) {
   return (
   <>
     <div className="flex justify-between items-center">
       <div>
         <p className="text-md">{title}</p>
-        <span className="text-xs bg-green-100 border px-2 py-1 rounded text-green-700">{state}</span>
+        {/* <span className="text-xs bg-green-100 border px-2 py-1 rounded text-green-700">{state}</span> */}
       </div>
       <div>
         <Form method="post">
