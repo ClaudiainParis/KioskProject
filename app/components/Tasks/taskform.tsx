@@ -1,4 +1,16 @@
 import { Form } from "@remix-run/react";
+import {
+  Stack,
+  Title,
+  Text,
+  List,
+  Checkbox,
+  Group,
+  Center,
+  Container,
+  Space,
+  Anchor,
+} from "@mantine/core";
 import { states } from '../../types/jobs'
 
 export function Taskform() {
@@ -24,27 +36,32 @@ export function Taskform() {
               )
             })}
           </select>
+          <Space h="lg" />
         </div>
         <div className="mb-5">
           <label className="font-semibold mb-2 block" htmlFor="task">
             Task
           </label>
+          <Space h="lg" />
           <textarea
             name="title"
             id="title"
             className="w-full border-2 rounded-md mr-8 border-gray-600 px-3 py-1"
           />
         </div>
+        <Space h="lg" />
         <div className="mb-5">
           <label className="font-semibold mb-2 block" htmlFor="task">
             Done by?
           </label>
+          <Space h="lg" />
           <textarea
             name="owner"
             id="owner"
             className="w-full border-2 rounded-md mr-8 border-gray-600 px-3 py-1"
           />
         </div>
+        <Space h="lg" />
         <div>
           <button
             type="submit"

@@ -18,18 +18,25 @@ export const getAllTasks = async (userId: string) => {
       return taskById;
     }
 
-    export const createTask = async ({title, state, owner, description} : TaskData) => {
+    export const createTask = async ({title, state, owner, createdBy} : TaskData) => {
         const taskById = await prisma.task.create({
-          data: {title, state, owner, description}, 
+          data: {
+            title, 
+            state, 
+            owner,
+            createdBy: {
+              connect: {id: createdBy.id}
+            },
+          }, 
         });
         if(!taskById){
           return json({error: 'Could not post the task'})
         }
-        return json({
+        return  json({
           message: "Task created successfully",
           success: "true",
           payload: taskById,
-        })
+        }) 
       }
       
       export const deleteTask = async (id: any) => {

@@ -81,7 +81,7 @@ export const action: ActionFunction = async ({ request }) => {
       const Owner = form.get("owner")
       const Description = form.get("description")
       const user = {
-        id: "randomId",
+        id: "63a9f0ea7b7a4a0fdb917a36",
       };
       const CreatedBY = user
 
@@ -108,31 +108,22 @@ export const action: ActionFunction = async ({ request }) => {
 export default function Checklist() {
   const { userTask } = useLoaderData<typeof loader>()
   return (
-    <Stack maw={800} mr="auto" pt={20} pl={24} justify="center">
+    <Stack maw={800} mr="auto" pt={20} pl={24} align="center" spacing="xl">
       <Title order={2}>Create your checklist !</Title>
-
       <div>
-        {/* <label htmlFor="task"> Task </label> */}
-        {/* <Form method="post">
-          <div>
-            <label htmlFor="task"> Task </label>
-            <input type="text" name="task" id="task" className="task" />
-          </div>
-          <button type="submit"> Add </button>
-        </Form> */}
-        {/* <input 
-          type="text"
-          name="task"
-          id="task"
-          className="task"
-          /> */}
       </div>
       <Taskform />
-      <Space />
-      <div className="grid gap-5">
+      <Space h="lg" />
+      <div>
           {userTask.task.length ? <> {userTask.task.map((task: TaskListProps) => {
             return(
-              <Tasklist key={task.id} id={task.id} title={task.title} state={task.state} owner={task.owner} createdBy={task.createdBy}
+              <Tasklist 
+              key={task.id} 
+              id={task.id} 
+              title={task.title} 
+              state={task.state} 
+              owner={task.owner} 
+              createdBy={task.createdBy}
               // description={task.description}
               />
             )
