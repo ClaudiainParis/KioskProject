@@ -3,15 +3,33 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mongodb"
   url      = env("DATABASE_URL")
 }
 
 model User {
-  id String @id
-
+  id String @id @map("_id")
+  createdAt DateTime @default(now())
   firstName String @map("first_name")
   lastName  String @map("last_name")
-
+  task      Task[]
   @@map("user")
+}
+
+
+model Task {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  title       String
+  state       State @default(TODO)
+  taskId      String   @db.ObjectId
+  owner       User     @relation(fields: [taskId], references: [id])
+  description String
+}
+
+enum States {
+  TODO
+  DOING
+  DONE
 }
