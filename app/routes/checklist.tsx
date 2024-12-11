@@ -36,10 +36,10 @@ export const loader: LoaderFunction = async ({ request }) => {
   const prisma = new PrismaClient();
 
   try{
-  const userId = new ObjectId().toHexString();
+  const userId = "63a9f0ea7b7a4a0fdb917a34";
 
   let user = await prisma.user.findUnique({
-    where: { id: "63a9f0ea7b7a4a0fdb917a34" }
+    where: { id: userId }
   });
   
   if (!user) {
@@ -59,7 +59,7 @@ export const loader: LoaderFunction = async ({ request }) => {
 
    
   }
-  const userTask = await getAllTasks(user.id);
+  const userTask = await getAllTasks(userId);
   return {user, userTask};
   } 
   catch (error) {
