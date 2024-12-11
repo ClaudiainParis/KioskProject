@@ -60,7 +60,9 @@ export const loader: LoaderFunction = async ({ request }) => {
    
   }
   const userTask = await getAllTasks(userId);
+console.log(userTask)
   return {user, userTask};
+
   } 
   catch (error) {
     console.error("Error in loader:", error);
@@ -93,7 +95,9 @@ export const action: ActionFunction = async ({ request }) => {
 
         // description: Description
       });
+      console.log(newTask)
       return newTask;
+      
     }
     case "delete": {
       const id = form.get("id");
@@ -104,6 +108,8 @@ export const action: ActionFunction = async ({ request }) => {
       return null;
   }
 };
+
+
 
 export default function Checklist() {
   const { userTask } = useLoaderData<typeof loader>()

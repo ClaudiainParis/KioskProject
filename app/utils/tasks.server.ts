@@ -16,6 +16,7 @@ export const getAllTasks = async (userId: string) => {
         },
       });
       return taskById;
+  
     }
 
     export const createTask = async ({title, state, owner, createdBy} : TaskData) => {
@@ -32,6 +33,7 @@ export const getAllTasks = async (userId: string) => {
         if(!taskById){
           return json({error: 'Could not post the task'})
         }
+        console.log(taskById);
         return  json({
           message: "Task created successfully",
           success: "true",
