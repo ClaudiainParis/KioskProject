@@ -13,10 +13,9 @@ export interface TaskListProps {
 export function Tasklist({ title, id }: TaskListProps) {
   return (
   <>
-    <div className="flex justify-between items-center">
+    <div>
       <div>
         <p className="text-md">{title}</p>
-        {/* <span className="text-xs bg-green-100 border px-2 py-1 rounded text-green-700">{state}</span> */}
       </div>
       <div>
         <Form method="post">

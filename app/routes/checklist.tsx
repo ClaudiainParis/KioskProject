@@ -108,7 +108,7 @@ export const action: ActionFunction = async ({ request }) => {
 export default function Checklist() {
   const { userTask } = useLoaderData<typeof loader>()
   return (
-    <Stack maw={800} mr="auto" pt={20} pl={24} align="center" spacing="xl">
+    <Stack maw={800} mr="auto" pt={20} pl={24} align="center">
       <Title order={2}>Create your checklist !</Title>
       <div>
       </div>
@@ -128,7 +128,7 @@ export default function Checklist() {
               />
             )
           })}
-          </> : "😳 No task"}
+          </> : "😳 No tasks"}
         </div>
     </Stack>
   );

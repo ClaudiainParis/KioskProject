@@ -17,15 +17,14 @@ export function Taskform() {
   return (
     <>
       <Form method="post">
-        <div className="mb-5">
-          <label className="font-semibold mb-2 block" htmlFor="state">
+        <div>
+          <label>
             Category
           </label>
-
+          <Space h="lg" />
           <select
             name="state"
             id="state"
-            className="border-2 w-full rounded-md mr-8 border-gray-600 px-3 py-1 h-9"
             defaultValue={states[0].name}
           >
             {states.map((state, index) => {
@@ -38,35 +37,34 @@ export function Taskform() {
           </select>
           <Space h="lg" />
         </div>
-        <div className="mb-5">
-          <label className="font-semibold mb-2 block" htmlFor="task">
+        <div>
+          <label>
             Task
           </label>
           <Space h="lg" />
           <textarea
             name="title"
-            id="title"
-            className="w-full border-2 rounded-md mr-8 border-gray-600 px-3 py-1"
-          />
+            id="title" 
+            />
         </div>
         <Space h="lg" />
-        <div className="mb-5">
-          <label className="font-semibold mb-2 block" htmlFor="task">
+        <div>
+          <label htmlFor="task">
             Done by?
           </label>
           <Space h="lg" />
           <textarea
             name="owner"
-            id="owner"
-            className="w-full border-2 rounded-md mr-8 border-gray-600 px-3 py-1"
-          />
+            id="owner" 
+            />
         </div>
         <Space h="lg" />
         <div>
           <button
             type="submit"
             name="action"
-            value="new" className="w-full rounded-xl bg-red-500 px-3 py-2 text-white font-semibold transition duration-300 ease-in-out hover:bg-red-600" >
+            value="new" 
+            >
             Add task
           </button>
         </div>
