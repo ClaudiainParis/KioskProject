@@ -18,9 +18,7 @@ import { Taskform } from "../components/Tasks/taskform";
 import { Tasklist, TaskListProps } from "../components/Tasks/tasklist";
 import { main } from "../../prisma/seed"
 import { PrismaClient } from "@prisma/client";
-
-
-// const prisma = new PrismaClient();
+import { ObjectId } from 'bson';
 
 export const meta: MetaFunction = () => {
   return [
@@ -38,20 +36,39 @@ export const loader: LoaderFunction = async ({ request }) => {
   const prisma = new PrismaClient();
 
   try{
-  
-  const user = await main()
+  const userId = new ObjectId().toHexString();
 
+  let user = await prisma.user.findUnique({
+    where: { id: "63a9f0ea7b7a4a0fdb917a34" }
+  });
+  
+  if (!user) {
+    let user = await prisma.user.create({
+      data: {
+        id: userId,
+        firstName: "Jean-Marc",
+        lastName: "Janco",
+      },
+
+
+    });
+    console.log("User created:", user);
+
+  } else {
+    console.log("User already exists:", user);
+
+   
+  }
   const userTask = await getAllTasks(user.id);
-
   return {user, userTask};
-  
-  } catch (error) {
+  } 
+  catch (error) {
     console.error("Error in loader:", error);
 
     // Return an error response
     throw new Response("Error loading data", { status: 500 });
   }
-};
+}
 
 export const action: ActionFunction = async ({ request }) => {
   const form = await request.formData();
