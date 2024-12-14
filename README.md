@@ -1,10 +1,6 @@
-# Case study: intership/alternance
+This is a [Remix](https://remix.run/docs) application. I used Prisma and MongoDb.
 
-Welcome to the Kiosk case study!
-
-This is a [Remix](https://remix.run/docs) application but don’t worry, you will grasp it easily.
-
-Please install the project, run it locally, and you will see what you have to do for this case study.
+Please install the project, run it locally, and you should be able to input tasks and modify then (except that the project is not working yet so find the error first Lol)
 
 Good luck!
 
