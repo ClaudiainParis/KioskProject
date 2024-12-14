@@ -75,6 +75,7 @@ console.log(userTask)
 export const action: ActionFunction = async ({ request }) => {
   const form = await request.formData();
   const action = form.get("action");
+    const userId = form.get("userId");
 
   switch (action) {
     case "new": {
@@ -85,7 +86,7 @@ export const action: ActionFunction = async ({ request }) => {
       const user = {
         id: "63a9f0ea7b7a4a0fdb917a36",
       };
-      const CreatedBY = user
+      const CreatedBY = user.id
 
       const newTask = await createTask({
         state: State,
@@ -112,13 +113,17 @@ export const action: ActionFunction = async ({ request }) => {
 
 
 export default function Checklist() {
-  const { userTask } = useLoaderData<typeof loader>()
+  // const { user, userTask } = useLoaderData();
+  const { user, userTask } = useLoaderData<typeof loader>()
   return (
     <Stack maw={800} mr="auto" pt={20} pl={24} align="center">
       <Title order={2}>Create your checklist !</Title>
       <div>
       </div>
+      <Form method="post">
+      <input type="hidden" name="userId" value={user.id} />
       <Taskform />
+      </Form>
       <Space h="lg" />
       <div>
           {userTask.task.length ? <> {userTask.task.map((task: TaskListProps) => {
@@ -136,6 +141,7 @@ export default function Checklist() {
           })}
           </> : "😳 No tasks"}
         </div>
+
     </Stack>
   );
 }

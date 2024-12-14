@@ -1,17 +1,15 @@
-version: "3.9"
 
 volumes:
-  postgres_data:
+  mongo_data:
 
 services:
-  postgres:
-    image: "postgres:16-alpine"
+  mongodb:
+    image: "mongo:6.0"
+    container_name: mongodb
     ports:
-      - "5432:5432"
+      - "27017:27017"
     volumes:
-      - postgres_data:/var/lib/postgresql/data
-      - ./data:/home
+      - mongo_data:/data/db
     environment:
-      POSTGRES_USER: kiosk
-      POSTGRES_DB: kiosk
-      POSTGRES_PASSWORD: kiosk
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
