@@ -6,21 +6,22 @@ export interface TaskListProps {
   title: string
   id: string
   owner: string
-  createdBy: any
+  // taskId : string
+  // createdBy: any
   // description: string
 }
 
-export function Tasklist({ title, id }: TaskListProps) {
+export function Tasklist({state, title, id }: TaskListProps) {
   return (
   <>
     <div>
       <div>
-        <p className="text-md">{title}</p>
+        <p >{title}</p>
+        <span>{state}</span>
       </div>
       <div>
         <Form method="post">
           <button
-            className="button"
             name="action"
             type="submit"
             value="delete"

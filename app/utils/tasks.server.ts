@@ -25,10 +25,9 @@ export const getAllTasks = async (userId: string) => {
             title, 
             state, 
             owner,
-            createdBy: {
-              connect: {id: createdBy.id}
-            },
-          }, 
+            createdBy
+          }
+        
         });
         if(!taskById){
           return json({error: 'Could not post the task'})

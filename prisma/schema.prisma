@@ -12,7 +12,7 @@ model User {
   createdAt DateTime @default(now())
   firstName String @map("first_name")
   lastName  String @map("last_name")
-  task      Task[] @relation("UserTasks")
+  task      Task[]
   @@map("user")
 }
 
@@ -23,9 +23,8 @@ model Task {
   updatedAt   DateTime @updatedAt
   title       String
   state       States @default(TODO)
-
-  createdBy   User     @relation("UserTasks", fields: [createdById], references: [id])
-  createdById String
+  taskId      String   @db.ObjectId
+  createdBy   User     @relation(fields: [taskId], references: [id]) 
   owner       String?
   description String?
 }

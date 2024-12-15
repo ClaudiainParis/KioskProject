@@ -19,6 +19,7 @@ import { Tasklist, TaskListProps } from "../components/Tasks/tasklist";
 import { main } from "../../prisma/seed"
 import { PrismaClient } from "@prisma/client";
 import { ObjectId } from 'bson';
+import { connect } from "node:http2";
 
 export const meta: MetaFunction = () => {
   return [
@@ -32,7 +33,6 @@ export const meta: MetaFunction = () => {
 //   };
 
 export const loader: LoaderFunction = async ({ request }) => {
-
   const prisma = new PrismaClient();
 
   try{
@@ -41,7 +41,7 @@ export const loader: LoaderFunction = async ({ request }) => {
   let user = await prisma.user.findUnique({
     where: { id: userId }
   });
-  
+
   if (!user) {
     let user = await prisma.user.create({
       data: {
@@ -57,12 +57,10 @@ export const loader: LoaderFunction = async ({ request }) => {
   } else {
     console.log("User already exists:", user);
 
-   
+
   }
   const userTask = await getAllTasks(userId);
-console.log(userTask)
   return {user, userTask};
-
   } 
   catch (error) {
     console.error("Error in loader:", error);
@@ -72,10 +70,71 @@ console.log(userTask)
   }
 }
 
+
+  // const prisma = new PrismaClient();
+
+  // const userId = "63a9f0ea7b7a4a0fdb917a34";
+  // const user = await prisma.user.findUnique({
+
+  //       where: { id: "63a9f0ea7b7a4a0fdb917a34" }
+  //     });
+      
+  //     if (!user) {
+  //       let user = await prisma.user.create({
+  //         data: {
+  //           id: "63a9f0ea7b7a4a0fdb917a36",
+  //           firstName: "Uma",
+  //           lastName: "Puma",
+  //         },
+  //       }) 
+  //       console.log("User created:", user);
+  //     }
+  //       else {
+  //         console.log("User already exists:", user);
+  //       }
+  //       const userTask = user ? await getAllTasks(userId) : [];
+  //       return {user, userTask}
+//   try{
+//   const userId = "63a9f0ea7b7a4a0fdb917a34";
+
+//   let user = await prisma.user.findUnique({
+//     where: { id: userId }
+//   });
+  
+//   if (!user) {
+//     let user = await prisma.user.create({
+//       data: {
+//         id: "63a9f0ea7b7a4a0fdb917a36",
+//         firstName: "Uma",
+//         lastName: "Puma",
+//       },
+
+
+//     });
+//     console.log("User created:", user);
+
+//   } else {
+//     console.log("User already exists:", user);
+
+   
+//   }
+//   const userTask = await getAllTasks(userId);
+// console.log(userTask)
+//   return {user, userTask};
+
+//   } 
+//   catch (error) {
+//     console.error("Error in loader:", error);
+
+//     // Return an error response
+//     throw new Response("Error loading data", { status: 500 });
+//   }
+
+
 export const action: ActionFunction = async ({ request }) => {
   const form = await request.formData();
   const action = form.get("action");
-    const userId = form.get("userId");
+    // const userId = form.get("userId");
 
   switch (action) {
     case "new": {
@@ -83,16 +142,18 @@ export const action: ActionFunction = async ({ request }) => {
       const Title = form.get("title");
       const Owner = form.get("owner")
       const Description = form.get("description")
-      const user = {
-        id: "63a9f0ea7b7a4a0fdb917a36",
-      };
-      const CreatedBY = user.id
-
-      const newTask = await createTask({
+      // const TaskId = form.get("taskId")
+      const userId= "63a9f0ea7b7a4a0fdb917a34";
+      const newTask = await createTask( {
         state: State,
         title: Title,
         owner: Owner,
-        createdBy: CreatedBY
+        createdBy: 
+        { connect: {
+          id: userId 
+        }
+        }
+        // taskId : TaskId
 
         // description: Description
       });
@@ -134,7 +195,8 @@ export default function Checklist() {
               title={task.title} 
               state={task.state} 
               owner={task.owner} 
-              createdBy={task.createdBy}
+              // createdBy={task.createdBy}
+              // taskId={task.taskId}
               // description={task.description}
               />
             )
