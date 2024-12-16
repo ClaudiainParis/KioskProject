@@ -1,7 +1,6 @@
-This is a [Remix](https://remix.run/docs) application. I used Prisma and MongoDb.
+This is a [Remix](https://remix.run/docs) application for task management. I used Prisma and MongoDb.
 
-Please install the project, run it locally, and you should be able to input tasks and modify then (except that the project is not working yet so find the error first Lol)
-
+Please install the project, run it locally, and you should be able to input tasks and delete them. Coming soon: update tasks with a description and a subtask, a filter function.
 Good luck!
 
 ## Development
