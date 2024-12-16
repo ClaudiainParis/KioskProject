@@ -3,10 +3,11 @@ interface FormFieldProps {
     label: string
     type?: string
     value: string
+    placeholder: string
     onChange?: (...args: any) => any
   }
   
-  export function Textfield({ htmlFor, label, type = 'text', value, onChange = () => {} }: FormFieldProps) {
+  export function Textfield({ htmlFor, label, type = 'text', value, placeholder = 'text', onChange = () => {} }: FormFieldProps) {
     return (
       <>
         <label htmlFor={htmlFor}>
@@ -18,6 +19,7 @@ interface FormFieldProps {
           id={htmlFor}
           name={htmlFor}
           value={value}
+          placeholder={placeholder}
         />
       </>
     )

@@ -70,67 +70,6 @@ export const loader: LoaderFunction = async ({ request }) => {
   }
 }
 
-
-  // const prisma = new PrismaClient();
-
-  // const userId = "63a9f0ea7b7a4a0fdb917a34";
-  // const user = await prisma.user.findUnique({
-
-  //       where: { id: "63a9f0ea7b7a4a0fdb917a34" }
-  //     });
-      
-  //     if (!user) {
-  //       let user = await prisma.user.create({
-  //         data: {
-  //           id: "63a9f0ea7b7a4a0fdb917a36",
-  //           firstName: "Uma",
-  //           lastName: "Puma",
-  //         },
-  //       }) 
-  //       console.log("User created:", user);
-  //     }
-  //       else {
-  //         console.log("User already exists:", user);
-  //       }
-  //       const userTask = user ? await getAllTasks(userId) : [];
-  //       return {user, userTask}
-//   try{
-//   const userId = "63a9f0ea7b7a4a0fdb917a34";
-
-//   let user = await prisma.user.findUnique({
-//     where: { id: userId }
-//   });
-  
-//   if (!user) {
-//     let user = await prisma.user.create({
-//       data: {
-//         id: "63a9f0ea7b7a4a0fdb917a36",
-//         firstName: "Uma",
-//         lastName: "Puma",
-//       },
-
-
-//     });
-//     console.log("User created:", user);
-
-//   } else {
-//     console.log("User already exists:", user);
-
-   
-//   }
-//   const userTask = await getAllTasks(userId);
-// console.log(userTask)
-//   return {user, userTask};
-
-//   } 
-//   catch (error) {
-//     console.error("Error in loader:", error);
-
-//     // Return an error response
-//     throw new Response("Error loading data", { status: 500 });
-//   }
-
-
 export const action: ActionFunction = async ({ request }) => {
   const form = await request.formData();
   const action = form.get("action");

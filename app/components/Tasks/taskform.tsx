@@ -45,6 +45,7 @@ export function Taskform() {
           <textarea
             name="title"
             id="title" 
+            placeholder="Add a new task... "
             />
         </div>
         <Space h="lg" />
@@ -56,6 +57,7 @@ export function Taskform() {
           <textarea
             name="owner"
             id="owner" 
+            placeholder="Who's responsible for this task?"
             />
         </div>
         <Space h="lg" />

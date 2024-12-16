@@ -12,6 +12,7 @@ import {
   Anchor,
 } from "@mantine/core";
 import { HiTrash } from "react-icons/hi2";
+import { MdTipsAndUpdates } from "react-icons/md";
 
 export interface TaskListProps {
   state: any
@@ -34,17 +35,21 @@ export function Tasklist({state, title, id, owner }: TaskListProps) {
         <Space />
         <p style={{ color: "#09B"  }}> Done by {owner}</p>
 
-      <div>
+     <button>
+      < MdTipsAndUpdates /> 
+      </button>
         <Form method="post">
           <button
             name="action"
             type="submit"
             value="delete"
           >
+         
             <HiTrash/>
           </button>
           <input type="hidden" name="id" value={id} />
         </Form>
+        <div>
         </div>
       </div>
     </div>
